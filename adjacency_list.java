@@ -1,23 +1,15 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.AbstractQueue;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.Scanner;
 
-public class adjacency_list {
+public class adjacency_list implements graphInterface {
 	
 	//The adjacency_list class has 2 fields
-	public static int numberOfVertices;
-	public static Map<Integer, List<Integer>> adjacencyList;
+	public int numberOfVertices;
+	public Map<Integer, List<Integer>> adjacencyList;
 	
 	/**Constructor
 	 * 
@@ -32,7 +24,7 @@ public class adjacency_list {
 		}
 	}
 	
-	/**Adds an edge to the graph
+	/**Adds an UNDIRECTED edge to the graph
 	 * 
 	 * @param start
 	 * @param finish
@@ -40,8 +32,7 @@ public class adjacency_list {
 	public void addEdge(int start, int finish) {
 		//Add edge to START vertex
 		adjacencyList.get(start).add(finish);
-		//Add edge to FINISH vertex
-		adjacencyList.get(finish).add(start);
+		adjacencyList.get(finish).add(start);//Delete to make graph edges DIRECTED
 	}
 	
 	/**Removes an edge from the graph
@@ -49,7 +40,7 @@ public class adjacency_list {
 	 * @param start
 	 * @param finish
 	 */
-	private static void removeEdge(int start, int finish) {
+	public void removeEdge(int start, int finish) {
 		//Add edge to START vertex
 		adjacencyList.get(start).remove(adjacencyList.get(start).indexOf(finish));
 		//Add edge to FINISH vertex
@@ -61,7 +52,7 @@ public class adjacency_list {
 	 * @param vertex the vertex adjacents are being found
 	 * @return the queue of adjacent vertices
 	 */
-	public static Queue<Integer> queueAdjacent(int vertex) {
+	public Queue<Integer> queueAdjacent(int vertex) {
 		Queue<Integer> adjacent = new LinkedList<Integer>();
 		for (int i = 0; i < adjacencyList.get(vertex).size(); i++) {
 			adjacent.add(adjacencyList.get(vertex).get(i));
@@ -74,7 +65,7 @@ public class adjacency_list {
 	 * @param vertex the vertex we are finding the degree of
 	 * @return degree of vertex
 	 */
-	public static int degree(int vertex) {
+	public int degree(int vertex) {
 		return adjacencyList.get(vertex).size();
 	}
 	
