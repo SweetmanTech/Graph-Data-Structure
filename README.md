@@ -1,9 +1,11 @@
 # Graph-Data-Structure
-Java Adjacency List Data Structure for CSE 2321: Foundations 1
+Java Graph Data Structure for CSE 2321: Foundations 1
+Interfaces: Adjacency List, Adjacency Matrix
+Classes: Bipartite, Topological Sort, Shortest Path
 # Setup
 * Download and extract Graph-Data-Structure.zip
 * `cd Graph-Data-Structure`
 # Compile
-`javac Bipartite.java`
+`javac shortestPath.java`
 # Run
-`java Bipartite graphX.txt`
+`java shortestPath graphX.txt`

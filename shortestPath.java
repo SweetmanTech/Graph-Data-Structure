@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class shortestPath extends adjacency_list {
+public class shortestPath extends adjacency_matrix {
 
-	public static adjacency_list adjList;
+	public static adjacency_matrix adjMatrix;
 	public static char[] color;
 	public static int[] distance;
 	public static int[] parent;
@@ -23,7 +23,7 @@ public class shortestPath extends adjacency_list {
 	public static void main(String[] args) {
 		//Load graph
 		loadFile(args);
-        BFS(adjList, 0);
+        BFS(adjMatrix, 0);
         
         //Print results
         printReachableVertices();
@@ -62,14 +62,14 @@ public class shortestPath extends adjacency_list {
             BufferedReader bufferedReader = 
                 new BufferedReader(new FileReader(fileName));
             String line = bufferedReader.readLine();
-            adjList = new adjacency_list(Integer.parseInt(line));
+            adjMatrix = new adjacency_matrix(Integer.parseInt(line));
             line = bufferedReader.readLine();
             while((line) != null) {
             	if (line.length() > 0 ) {
 	            	List<String> strVertexList = Arrays.asList(line.split(","));
 	            	int start = Integer.parseInt(strVertexList.get(0).trim());
 	    			int finish = Integer.parseInt(strVertexList.get(1).trim());
-	                adjList.addEdge(start, finish);
+	                adjMatrix.addEdge(start, finish);
             	}
                 line = bufferedReader.readLine();
             }   
@@ -94,7 +94,7 @@ public class shortestPath extends adjacency_list {
 	 * @param graph the graph being searched
 	 * @param currentVertex the vertex currently being searched on
 	 */
-	public static void BFS(adjacency_list graph, int currentVertex) {
+	public static void BFS(adjacency_matrix graph, int currentVertex) {
 		int graphSize = graph.numberOfVertices;
 		color = new char[graphSize];
 		distance = new int[graphSize];
